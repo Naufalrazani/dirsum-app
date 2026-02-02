@@ -7,7 +7,7 @@ export default {
 };
 
 export const Default = () => (
-  <LoginInput login={({ email, password }) => alert(`Login with: ${email}`)} />
+  <LoginInput login={({ email }) => alert(`Login with: ${email}`)} />
 );
 
 export const Loading = () => <LoginInput login={() => {}} isLoading={true} />;
