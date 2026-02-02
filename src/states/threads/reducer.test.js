@@ -19,7 +19,7 @@ describe('threadsReducers function', () => {
 
     const nextState = threadsReducer(initialState, action);
 
-    expect(nextState).toEqual(initialState);
+    expect(nextState).toEqual(initialState); // 3_branch_protection
   });
 
   it('should return the threads when given by RECEIVE_THREADS action', () => {
