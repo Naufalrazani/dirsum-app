@@ -19,7 +19,7 @@ describe('threadsReducers function', () => {
 
     const nextState = threadsReducer(initialState, action);
 
-    expect(nextState).toEqual(['asal']);
+    expect(nextState).toEqual(initialState);
   });
 
   it('should return the threads when given by RECEIVE_THREADS action', () => {
@@ -33,7 +33,7 @@ describe('threadsReducers function', () => {
 
     const nextState = threadsReducer(initialState, action);
 
-    expect(nextState).toEqual(action.payload.threads);
+    expect(nextState).toEqual(['asal']);
   });
 
   it('should return the threads with the new thread when given by CREATE_THREAD action', () => {
