@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from 'eslint-plugin-storybook';
+
 import globals from 'globals';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -15,9 +18,7 @@ const compat = new FlatCompat({
 
 export default [
   { ignores: ['dist', 'node_modules', 'vite.config.js', 'cypress.config.js'] },
-
   ...compat.extends('eslint-config-standard'),
-
   {
     files: ['**/*.{js,jsx}', 'cypress/**/*.cy.js'],
     languageOptions: {
@@ -69,5 +70,6 @@ export default [
         version: 'detect'
       }
     }
-  }
+  },
+  ...storybook.configs['flat/recommended']
 ];
