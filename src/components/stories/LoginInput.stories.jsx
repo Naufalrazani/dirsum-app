@@ -1,4 +1,3 @@
-import React from 'react';
 import LoginInput from '../LoginInput';
 
 export default {
@@ -6,8 +5,25 @@ export default {
   component: LoginInput
 };
 
-export const Default = () => (
-  <LoginInput login={({ email }) => alert(`Login with: ${email}`)} />
-);
+/**
+ * Story dalam kondisi default atau normal.
+ * User dapat mengisi email dan password serta menekan tombol masuk.
+ */
+export const Default = {
+  args: {
+    login: ({ email }) => alert(`Mencoba login dengan: ${email}`),
+    isLoading: false
+  }
+};
 
-export const Loading = () => <LoginInput login={() => {}} isLoading={true} />;
+/**
+ * Story dalam kondisi loading.
+ * Seluruh input dan tombol akan dinonaktifkan (disabled)
+ * untuk mencegah input ganda saat proses autentikasi berlangsung.
+ */
+export const Loading = {
+  args: {
+    login: () => {},
+    isLoading: true
+  }
+};

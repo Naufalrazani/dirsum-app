@@ -16,9 +16,7 @@ describe('threadsReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
     const initialState = [];
     const action = { type: 'UNKNOWN' };
-
     const nextState = threadsReducer(initialState, action);
-
     expect(nextState).toEqual(initialState);
   });
 
@@ -30,9 +28,7 @@ describe('threadsReducers function', () => {
         threads: [{ id: 'thread-1', title: 'Thread Test' }]
       }
     };
-
     const nextState = threadsReducer(initialState, action);
-
     expect(nextState).toEqual(action.payload.threads);
   });
 
@@ -44,9 +40,31 @@ describe('threadsReducers function', () => {
         thread: { id: 'thread-2', title: 'Thread 2' }
       }
     };
+    const nextState = threadsReducer(initialState, action);
+    expect(nextState).toEqual([action.payload.thread, ...initialState]);
+  });
+
+  it('should return the threads with the toggled upvote thread when given by TOGGLE_UPVOTE_THREAD action', () => {
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Thread 1',
+        upVotesBy: [],
+        downVotesBy: []
+      }
+    ];
+
+    const action = {
+      type: ActionType.TOGGLE_UPVOTE_THREAD,
+      payload: {
+        threadId: 'thread-1',
+        userId: 'user-1'
+      }
+    };
 
     const nextState = threadsReducer(initialState, action);
 
-    expect(nextState).toEqual([action.payload.thread, ...initialState]);
+    expect(nextState[0].upVotesBy).toContain('user-1');
+    expect(nextState[0].downVotesBy).not.toContain('user-1');
   });
 });

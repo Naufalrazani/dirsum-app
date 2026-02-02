@@ -2,8 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { HiPaperAirplane } from 'react-icons/hi2';
 
-function CommentInput ({ addComment }) {
-  const [content, setContent] = useState('');
+function CommentInput ({ addComment, defaultValue = '' }) {
+  const [content, setContent] = useState(defaultValue);
 
   function handleAddComment () {
     if (content.trim()) {
@@ -50,7 +50,8 @@ function CommentInput ({ addComment }) {
 }
 
 CommentInput.propTypes = {
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string
 };
 
 export default CommentInput;
